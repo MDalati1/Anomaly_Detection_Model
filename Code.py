@@ -6,7 +6,7 @@ Created on Sun Nov 20 01:47:01 2022
 @author: mohamaddalati
 """
 
-# Assignment 6 
+# Import libraries 
 import pandas as pd 
 import numpy as np 
 
@@ -14,7 +14,7 @@ import numpy as np
 Task 1. First, import the data and set the column ‘raw_material’ as the target variable and
 column ‘time’ as the predictor. Then, split the data into training (70%) and test (30%). 
 """
-df = pd.read_csv('/Users/mohamaddalati/Desktop/INSY-662/Assignment6/production.csv')
+df = pd.read_csv('/Users/mohamaddalati/Desktop/production.csv')
 
 X = df[['time']]
 y = df['raw_material']
@@ -36,12 +36,11 @@ y_test_pred1 = model1.predict(X_test)
 from sklearn.metrics import mean_squared_error
 ridge_penalty_mse = mean_squared_error(y_test, y_test_pred1)
 print("RR MSE is:", ridge_penalty_mse )
-
+# MSE is 0.096
 """
 Task 3: Now, we are going to use an isolation forest model to remove anomalies (i.e., outliers)
 in the data so that the predictive performance of the model improves. Develop an isolation
-forest model to detect anomalies in this dataset (using both raw_material and time). Use
-contamination = 0.1
+forest model to detect anomalies in this dataset (using both raw_material and time). Use contamination = 0.1
 """
 # Building isolation forest model
 from sklearn.ensemble import IsolationForest
@@ -79,10 +78,11 @@ y_test_pred2 = model2.predict(X_test2)
 from sklearn.metrics import mean_squared_error
 ridge_penalty_mse2 = mean_squared_error(y_test2, y_test_pred2)
 print("RR MSE is:", ridge_penalty_mse2)
-# 0.052076304313701804
+# MSE is 0.052
 
 
-
+# Results 
+We can see how upon removing the anomalies, the Minimum Standard Error(MSE) decreased from 0.096 to 0.052
 
 
 
